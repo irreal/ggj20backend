@@ -9,7 +9,7 @@ const port = process.env.PORT || 80;
 
 let eventQueue = [];
 
-app.get('/', (req, res) => res.send({ message: "hello svete" }))
+app.get('/', (req, res) => res.send({ message: "service appears to be up and running :)" }))
 app.post('/event', (req, res) => {
     console.log('evo eventa!', req.body);
     if (req.body.action) {

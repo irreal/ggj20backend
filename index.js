@@ -1,3 +1,4 @@
+const pjson = require('./package.json');
 const express = require('express')
 express.json();
 var cors = require('cors');
@@ -9,7 +10,7 @@ const port = process.env.PORT || 80;
 
 let eventQueue = [];
 
-app.get('/', (req, res) => res.send({ message: "service appears to be up and running :)" }))
+app.get('/', (req, res) => res.send({ message: `service appears to be up and running :) Version: ${pjson.version}` }))
 app.post('/event', (req, res) => {
     console.log('evo eventa!', req.body);
     if (req.body.action) {

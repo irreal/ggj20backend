@@ -1,6 +1,6 @@
 module.exports = {
     drawingBoard: {
-        width: 17,
-        height: 17
+        width: 50,
+        height: 50
     }
 };

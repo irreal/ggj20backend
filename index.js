@@ -34,8 +34,9 @@ app.post('/event', (req, res) => {
     console.log('evo eventa!', req.body);
     if (req.body.action) {
         if (req.body.action == 'img') {
+            db.clearBoard();
             handleImgEvents(req.body.actionLog);
-            longPolling.publish('/event', { action: 'img', board: db.getBoard() });
+            longPolling.publish('/event', { action: 'img', actionItems:  req.body.actionLog });
         }
         else if (req.body.action == 'clear-img') {
             db.clearBoard();

@@ -13,6 +13,14 @@ class DrawBoard {
         return newBoard;
     }
 
+    getBoard() {
+        return this.db;
+    }
+
+    clearBoard() {
+        this.db = this.getEmptyBoard();
+    }
+
     validateCoordinates(x, y) {
         if (x >= this.configuration.width || y >= this.configuration.height || x < 0 || y < 0) {
             throw new Error(`Invalid index supplied must be between 0 and ${this.configuration.width - 1} for x and between 0 and ${this.configuration.height - 1} for y. got x = ${x} y = ${y}`);

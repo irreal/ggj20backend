@@ -1,16 +1,19 @@
 const pjson = require('./package.json');
 const express = require('express')
-express.json();
-var cors = require('cors');
-var bodyParser = require('body-parser')
+const cors = require('cors');
+const bodyParser = require('body-parser')
+const createLongPolling = require("express-longpoll");
+
 const app = express()
+
+
+express.json();
 app.use(cors());
 app.use(bodyParser.json());
+
+const longPolling = createLongPolling(app, { DEBUG: true });
+
 const port = process.env.PORT || 80;
-
-var longpollWithDebug = require("express-longpoll")(app, { DEBUG: true });
-
-// let eventQueue = [];
 
 longpollWithDebug.create('/event')
 
@@ -24,16 +27,4 @@ app.post('/event', (req, res) => {
     res.sendStatus(201);
 });
 
-
-// app.get('/event', (req, res) => {
-//     if (eventQueue.length === 0) {
-//         res.send({});
-//     }
-//     else {
-//         res.send(eventQueue[0]);
-//         eventQueue = eventQueue.slice(1);
-//         console.log('nakon slanja queue: ', eventQueue);
-//     }
-// });
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`GGJ20 backend listening on port ${port}!`))

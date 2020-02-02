@@ -59,6 +59,8 @@ app.post('/progression', (req, res) => {
         }
         if (body.action == 'progression') {
             longPolling.publish('/progression', body);
+            db.clearBoard();
+            longPolling.publish('/event',{actioon:'img', actioonItems: [{x:0, y:0, action:0, delay:10}]})
         }
     }
     res.sendStatus(200);
